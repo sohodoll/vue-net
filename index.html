@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.js"></script>
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,7 +23,12 @@
     <div id="app">
         <h2>I am the template now</h2>
         <div v-if="showBooks">
-            <p>{{title}} - {{author}} - {{age}}</p>
+            <ul>
+                <li v-for="book in books">
+                    <p>{{book.title}}</p>
+                    <p>{{book.author}}</p>
+                </li>
+            </ul>
         </div>
         <button v-on:click="age++">Increase Age</button>
         <button v-on:click="age--">Decrease Age</button>
@@ -24,6 +39,13 @@
         <div @click="changeTitle('Weee')">Woo</div>
 
         <div v-show="showBooks">Currently Showing Books</div>
+        <br>
+
+        <div class="box" @mouseover="handleEvent($event, 5)">Mouse Over</div>
+        <div class="box" @mouseleave="handleEvent">Mouse Leave</div>
+        <div class="box" @dblclick="handleEvent">Double Click</div>
+        <div class="box" @mousemove="handleMousemove">Position: {{x}}:{{y}}</div>
+
     </div>
     <script src="./app.js"></script>
 </body>
