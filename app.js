@@ -2,6 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       showBooks: true,
+      url: 'https://www.youtube.com/watch?v=CYPZBK8zUik&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1&index=3',
       x: 0,
       y: 0,
       books: [
@@ -27,6 +28,14 @@ const app = Vue.createApp({
     handleMousemove(event) {
       this.x = event.offsetX
       this.y = event.offsetY
+    },
+    toggleFav(book) {
+      book.isFav = !book.isFav
+    },
+  },
+  computed: {
+    filteredBooks() {
+      return this.books.filter((book) => book.isFav)
     },
   },
 })
