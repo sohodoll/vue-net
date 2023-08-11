@@ -1,4 +1,4 @@
-# jobs-router
+# blog
 
 ## Project setup
 ```
