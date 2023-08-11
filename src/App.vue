@@ -1,47 +1,57 @@
-<script setup>
-import { ref } from 'vue'
-import SingUpForm from './components/SignUpForm.vue'
-
-const data = ref('Hello World!')
-</script>
-
 <template>
-  <SingUpForm />
+  <nav>
+    <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
+    <router-link :to="{ name: 'Jobs' }">Jobs</router-link>
+  </nav>
+
+  <button @click="redirect">Redirect</button>
+  <button @click="back">Go Back</button>
+  <button @click="forward">Go Forward</button>
+  <router-view />
 </template>
 
+<script>
+export default {
+  methods: {
+    redirect() {
+      this.$router.push({ name: 'Home' })
+    },
+    back() {
+      this.$router.back()
+    },
+    forward() {
+      this.$router.forward()
+    },
+  },
+}
+</script>
+
 <style>
-body {
-  background-color: rgba(95, 158, 160, 0.068);
-}
-
 #app {
-  display: flex;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #1c2833;
 }
 
-header {
-  line-height: 1.5;
+nav {
+  padding: 30px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+nav a.router-link-exact-active {
+  color: #42b983;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+button {
+  margin: 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
 }
 </style>
