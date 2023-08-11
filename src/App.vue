@@ -1,50 +1,47 @@
-<template>
-  <h1>Reaction Timer</h1>
-  <button :disabled="isPlaying" @click="start">Play</button>
-  <Block @end="endGame" v-if:="isPlaying" :delay="delay" />
-  <Results v-if="showResults" :score="score" />
-</template>
+<script setup>
+import { ref } from 'vue'
+import SingUpForm from './components/SignUpForm.vue'
 
-<script>
-import Block from './components/Block.vue'
-import Results from './components/Results.vue'
-
-export default {
-  name: 'App',
-  data() {
-    return {
-      isPlaying: false,
-      delay: null,
-      score: null,
-      showResults: false,
-    }
-  },
-  components: {
-    Block,
-    Results,
-  },
-  methods: {
-    start() {
-      this.delay = 2000 + Math.random() * 5000
-      this.isPlaying = true
-      this.showResults = false
-    },
-    endGame(reactionTime) {
-      this.score = reactionTime
-      this.isPlaying = false
-      this.showResults = true
-    },
-  },
-}
+const data = ref('Hello World!')
 </script>
 
+<template>
+  <SingUpForm />
+</template>
+
 <style>
+body {
+  background-color: rgba(95, 158, 160, 0.068);
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #444;
-  margin-top: 60px;
+  display: flex;
+}
+
+header {
+  line-height: 1.5;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
 }
 </style>
