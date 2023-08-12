@@ -1,38 +1,30 @@
 <template>
-  <div class="home">Home</div>
-  <p ref="p">{{ name }} and {{ age }}</p>
-  <button @click="handleClick">test</button>
-  <button @click="age++">add age</button>
-  <input type="text" v-model="name" />
+  <div>
+    <h1>Home</h1>
+    <PostList :posts="posts" />
+  </div>
 </template>
-
 <script>
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
+import PostList from '../components/PostList.vue'
 
 export default {
-  name: 'HomeView',
+  name: 'Home',
+  components: { PostList },
   setup() {
-    const name = ref('mario')
-    const age = ref(30)
-    const p = ref(null)
+    const posts = ref([
+      {
+        title: 'Post Title One',
+        body: 'lorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem lorem',
+      },
+      {
+        title: 'Post Title Two',
+        body: 'lorem lorem',
+      },
+    ])
 
-    const handleClick = () => {
-      p.value.classList.toggle('test')
-      name.value = 'luigi'
-    }
-
-    return {
-      name,
-      age,
-      handleClick,
-      p,
-    }
+    return { posts }
   },
 }
 </script>
-
-<style>
-.test {
-  color: red;
-}
-</style>
+<style></style>
